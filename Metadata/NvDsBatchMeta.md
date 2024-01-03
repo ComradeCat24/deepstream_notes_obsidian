@@ -1,0 +1,17 @@
+- **Gst Buffer and Metadata:**   
+    - Gst Buffer is a basic unit in GStreamer, carrying metadata.
+    - DeepStream SDK uses NvDsBatchMeta as a standard structure for metadata.
+    - Metadata hierarchy includes batch, frame, object, classifier, and label data.
+- **Attaching Metadata:**
+    - NvDsBatchMeta attached by [[Gst-nvstreammux]] plugin at batch level.
+    - User-specific metadata added using NvDsUserMeta at batch, frame, or object level.
+    - Accessing metadata with functions like gst_buffer_get_nvds_batch_meta().
+- **Custom Metadata Upstream:**
+    - To add metadata before [[Gst-nvstreammux]]:
+        - Set specific members in the plugin's NvDsMeta structure.
+        - Attach metadata using gst_buffer_add_nvds_meta().
+        - Gst-nvstreammux transforms gst-meta to NvDsUserMeta in the frame_user_data list.
+- **New Metadata Fields (DeepStream 5.0 GA):**   
+    - NvDsObjectMeta structure includes detector_bbox_info and tracker_bbox_info for bounding box parameters.
+    - rect_params holds bounding box coordinates processed by the last module.
+    - Confidence and tracker_confidence store confidence values for the object, set by detector and tracker, respectively.

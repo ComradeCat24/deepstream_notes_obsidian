@@ -1,0 +1,6 @@
+- **RGBA:**
+    - RGB format with Red, Green, Blue, and Alpha channels.
+    - Common in graphics, allows transparency control.
+- **RGBA Buffers:**
+    - Data buffers in RGBA pixel format.
+    - Accepted by Gst-nvinfer for processing with transparency.
